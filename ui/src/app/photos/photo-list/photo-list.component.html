@@ -1,0 +1,14 @@
+<ap-search (onTyping)='filter = $event' [value]="filter"></ap-search>
+
+<ap-photos [photos]="photos | filterByDescription: filter"></ap-photos>
+
+<ap-load-button (click)="load()" [hasMore]="hasMore"></ap-load-button>
+
+<!-- 
+    1º. Este HTML chama o componente PhotosComponent através do seletor ap-photos. 
+
+    2º. PhotosComponent possui o array photos. Ele está sendo preenchido através do array photos do PhotoListComponent 
+    via databinding (colchetes []). É como se PhotosListComponent fosse o component pai e  PhotosComponent fosse o componente filho.
+
+    3º. PhotoListComponent tem seu array photos preenchido através de consulta e retorno de API feito através do serviço photoService.
+ -->

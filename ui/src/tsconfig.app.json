@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "module": "esNext", //"es2015" talvez deva substituir
+    "types": ["node"]
+  },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  // "include": [
+  //    "**/app/lazyModules/**/*.ts",
+  //    "src/**/*.d.ts",
+  //     "src/**/*.lazy.ts",
+  //     "src/**/*.ts",
+  //     "node_modules/jqwidgets-scripts/jqwidgets-ts/**/*.ts"
+  //  ],
+  "exclude": [
+    "src/test.ts",
+    "**/*.spec.ts"
+  ]
+}
