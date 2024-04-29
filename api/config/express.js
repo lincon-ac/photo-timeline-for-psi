@@ -27,12 +27,12 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage,
     fileFilter(req, file, cb) {
-        console.log("Recebendo arquivo de imagem")
+        console.log("Receiving image file")
         cb(null, true)
     }
 });
 
-app.set('secreta', 'sua frase secreta aqui');
+app.set('secret', 'your secret phrase here');
 app.set('upload', upload);
 
 const corsOptions = {
@@ -52,10 +52,10 @@ app.use((req, res, next) => {
     const token = req.headers['x-access-token'];
     console.log('####################################');
     if(token) {
-        console.log('Um token é enviado pelo aplicativo');
+        console.log('A token is send by the application');
         console.log('Token value is ' + token);
     } else {
-        console.log('Nenhum token é enviado pelo aplicativo');
+        console.log('No token is send by the the application');
     }
     console.log('####################################');
     next();
@@ -67,12 +67,12 @@ commentRoutes(app);
 
 
 app.use('*', (req, res) => {
-    res.status(404).json({ message: `rota ${req.originalUrl} não existe!` });
+    res.status(404).json({ message: `route ${req.originalUrl} does not exists!` });
 });
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({ message: 'Erro interno de servidor' });
+    res.status(500).json({ message: 'Internal server error' });
 });
 
 module.exports = app;

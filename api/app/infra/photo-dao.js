@@ -57,7 +57,7 @@ class PhotoDao {
                         console.log(err);
                         return reject('Can`t list photos');
                     }
-                    console.log('fotos retornadas');
+                    console.log('photos retornadas');
                     resolve(photos);
                 });
         });
@@ -84,7 +84,7 @@ class PhotoDao {
                 function (err) {
                     if (err) {
                         console.log(err);
-                        return reject('Não é possível adicionar foto');
+                        return reject('Can`t add photo');
                     }
                     resolve(this.lastID);
                 });
@@ -111,7 +111,7 @@ class PhotoDao {
             (err, row) => {
                 if (err) {
                     console.log(err);
-                    return reject('Não é possível pesquisar fotos');
+                    return reject('Can`t find photo');
                 }
                 if (row) {
                     resolve(photoConverter(row));
@@ -129,7 +129,7 @@ class PhotoDao {
             err => {
                 if (err) {
                     console.log(err);
-                    return reject('Não é possível remover a foto');
+                    return reject('Can`t remove photo');
                 }
                 resolve();
             }
@@ -155,7 +155,7 @@ class PhotoDao {
                 function (err) {
                     if (err) {
                         console.log(err);
-                        return reject('Não é possível adicionar comentário');
+                        return reject('Can`t add comment');
                     }
                     resolve(this.lastID);
                 });
@@ -179,7 +179,7 @@ class PhotoDao {
 
                     if (err) {
                         console.log(err);
-                        return reject('Não é possível carregar comentários');
+                        return reject('Can`t load comments');
                     }
                     const comments = rows.map(commentConverter);
                     return resolve(comments);
@@ -205,7 +205,7 @@ class PhotoDao {
                     console.log(row);
                     if (err) {
                         console.log(err);
-                        return reject('Não é possível carregar comentário');
+                        return reject('Can`t load comment');
                     }
                     return resolve(commentConverter(row));
                 }
@@ -227,7 +227,7 @@ class PhotoDao {
             function(err) {
                 if (err) {
                     console.log(err);
-                    return reject('Não é possível curtir a foto');
+                    return reject('Cant like photo');
                 }
                 resolve(!!this.changes);
             }

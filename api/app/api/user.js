@@ -9,17 +9,17 @@ api.login = async (req, res) => {
     const user = await new UserDao(req.db).findByNameAndPassword(userName, password);
     console.log(user);
     if(user) {
-        console.log(`Usuario ${userName} autenticado`);
-        console.log('Token de autenticação adicionado a resposta');
-        const token = jwt.sign(user, req.app.get('secreto'), {
+        console.log(`User ${userName} authenticated`);
+        console.log('Authentication Token added to response');
+        const token = jwt.sign(user, req.app.get('secret'), {
             expiresIn: 86400 // seconds, 24h
         });
         res.set('x-access-token', token);
         return res.json(user);
     } else {
-        console.log(`Falha na autenticação do usuário ${userName}`);
-        console.log('Nenhum token gerado');
-        res.status(401).json({ message: `Falha na autenticação do usuário ${userName}`});  
+        console.log(`Authentication failed for user ${userName}`);
+        console.log('No token generated');
+        res.status(401).json({ message: `Authentication failed for user ${userName}`});  
     }
 };
 

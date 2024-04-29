@@ -19,17 +19,17 @@ api.add = async (req, res) => {
     if(canComment) {
         const commentId = await commentDao.add(commentText, photo.id, req.user.id);
         const comment = await commentDao.findById(commentId);
-        console.log(`Comentario adicionado`, comment);
+        console.log(`Comment added`, comment);
         res.json(comment);
     } else {
-        res.status(403).json({ message: 'Restrito'});
+        res.status(403).json({ message: 'Forbiden'});
     }
 };
 
 api.listAllFromPhoto = async (req, res) => {
 
     const { photoId } = req.params;
-    console.log(`Obter comentários da foto ${photoId}`);
+    console.log(`Get comments from photo ${photoId}`);
     const comments = await new CommentDao(req.db).listAllFromPhoto(photoId);
     res.json(comments);
 }

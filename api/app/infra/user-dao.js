@@ -17,7 +17,7 @@ class UserDao {
             (err, row) => {
                 if (err) {
                     console.log(err);
-                    return reject('Não foi possível encontrar o usuário');
+                    return reject('Can`t find user');
                 }
                  
                 if(row) resolve(userConverter(row));
@@ -34,7 +34,7 @@ class UserDao {
             (err, row) => {
                 if (err) {
                     console.log(err);
-                    return reject('Não foi possível encontrar o usuário');
+                    return reject('Can`t find user');
                 }
                  
                 if(row) resolve(userConverter(row));
@@ -66,9 +66,9 @@ class UserDao {
                 function (err) {
                     if (err) {
                         console.log(err);
-                        return reject('Não foi possível registrar novo usuário');
+                        return reject('Can`t register new user');
                     }
-                    console.log(`Usuário ${user.userName} registrado!`)
+                    console.log(`User ${user.userName} registered!`)
                     resolve();
                 });
         });

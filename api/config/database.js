@@ -77,7 +77,7 @@ db.serialize(() => {
 
 process.on('SIGINT', () =>
     db.close(() => {
-        console.log('Database fechada');
+        console.log('Database closed');
         process.exit(0);
     })
 );

@@ -16,19 +16,19 @@ api.list = async (req, res) => {
     const { page } = req.query;
     const user = await new UserDao(req.db).findByName(userName);
     if(user) {
-        console.log(`Listando fotos`);
+        console.log(`Listing photos`);
         const photos = await new PhotoDao(req.db)
             .listAllFromUser(userName, page);
         res.json(photos);
     } else {
-        res.status(404).json({ message: 'Usuário não encontrado'});
+        res.status(404).json({ message: 'User not found'});
     }
     
 }
 
 api.add = async (req, res) => {
     console.log('####################################');
-    console.log('Dados JSON recebidos', req.body);
+    console.log('Received JSON data', req.body);
     const photo = req.body;
     photo.file = '';
     const id = await new PhotoDao(req.db).add(photo, req.user.id);
@@ -37,7 +37,7 @@ api.add = async (req, res) => {
 
 api.addUpload = async (req, res) => {
 
-        console.log('upload completo');
+        console.log('upload complete');
         console.log('Photo data', req.body);
         console.log('File info', req.file);
 
@@ -58,12 +58,12 @@ api.addUpload = async (req, res) => {
 api.findById = async (req, res) => {
     const { photoId } = req.params;
     console.log('####################################');
-    console.log(`Procurando foto pot ID ${photoId}`)
+    console.log(`Finding photo for ID ${photoId}`)
     const photo = await new PhotoDao(req.db).findById(photoId);
     if(photo) {
         res.json(photo);
     } else {
-        res.status(404).json({ message: 'A foto não existe'})
+        res.status(404).json({ message: 'Photo does not exist'})
     }  
 };
 
@@ -73,21 +73,21 @@ api.remove = async (req, res) => {
     const dao = new PhotoDao(req.db);
     const photo = await dao.findById(photoId);
     if(!photo) {
-        const message = 'A foto não existe';
+        const message = 'Photo does not exist';
         console.log(message);
         return res.status(404).json({ message });
     }
     
     if(userCanDelete(user)(photo)) {
         await dao.remove(photoId)
-        console.log(`Foto ${photoId} deletada!`);
+        console.log(`Photo ${photoId} deleted!`);
         res.status(200).end();
     } else {
         console.log(`
-            Operação inválida. Usuário ${user.id} 
-            pode excluir foto do usuário ${photo.userId}
+            Forbiden operation. User ${user.id} 
+            can delete photo from user ${photo.userId}
         `);
-        res.status(403).json({ message: 'Restrito'});
+        res.status(403).json({ message: 'Forbidden'});
     }
 };
 
@@ -96,7 +96,7 @@ api.like = async (req, res) => {
     const dao = new PhotoDao(req.db);
     const liked = await dao.likeById(photoId, req.user.id);
     if(liked) {
-        console.log(`Usuário ${req.user.name} Curtiu a foto ${photoId}`);
+        console.log(`User ${req.user.name} liked photo ${photoId}`);
         return res.status(201).end();
     }
     return res.status(304).end();

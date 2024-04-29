@@ -29,7 +29,7 @@ class CommentDao {
                 function (err) {
                     if (err) {
                         console.log(err);
-                        return reject('Não é possível adicionar comentário');
+                        return reject('Can`t add comment');
                     }
                     resolve(this.lastID);
                 });
@@ -53,7 +53,7 @@ class CommentDao {
 
                     if (err) {
                         console.log(err);
-                        return reject('Não é possível carregar comentários');
+                        return reject('Can`t load comments');
                     }
                     const comments = rows.map(commentConverter);
                     return resolve(comments);
@@ -79,7 +79,7 @@ class CommentDao {
                     console.log(row);
                     if (err) {
                         console.log(err);
-                        return reject('Não é possível carregar comentários');
+                        return reject('Can`t load comment');
                     }
                     return resolve(commentConverter(row));
                 }
