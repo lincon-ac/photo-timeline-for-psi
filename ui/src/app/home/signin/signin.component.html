@@ -20,7 +20,7 @@
             formControlName = "password"
             type="password"
             class="form-control"
-            placeholder="password">
+            placeholder="Digite a senha">
         <ap-vmessage
             text='Nome de usuário é obrigatório!'
             *ngIf="loginForm.get('password').errors?.required && (form.submitted || loginForm.get('password').touched)">

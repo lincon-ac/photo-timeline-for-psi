@@ -9,8 +9,8 @@ api.login = async (req, res) => {
     const user = await new UserDao(req.db).findByNameAndPassword(userName, password);
     console.log(user);
     if(user) {
-        console.log(`Usuário ${userName} autenticado`);
-        console.log('Token de autenticação adicionado à resposta');
+        console.log(`Usuario ${userName} autenticado`);
+        console.log('Token de autenticação adicionado a resposta');
         const token = jwt.sign(user, req.app.get('secreto'), {
             expiresIn: 86400 // seconds, 24h
         });
